@@ -1,26 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
+/* ─── Design Tokens ──────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:              #050505;
+  --surface:         rgba(255, 255, 255, 0.032);
+  --surface-raised:  rgba(255, 255, 255, 0.05);
+  --border:          rgba(255, 255, 255, 0.07);
+  --border-hover:    rgba(255, 255, 255, 0.12);
+  --red:             #DC2626;
+  --red-hover:       #b91c1c;
+  --red-alpha:       rgba(220, 38, 38, 0.1);
+  --red-border:      rgba(220, 38, 38, 0.2);
+  --text-hi:         #f2f2f2;
+  --text-mid:        rgba(242, 242, 242, 0.52);
+  --text-lo:         rgba(242, 242, 242, 0.3);
+  --text-faint:      rgba(242, 242, 242, 0.2);
+  --space-1: 8px;   --space-2: 16px;  --space-3: 24px;
+  --space-4: 32px;  --space-5: 40px;  --space-6: 48px;
+  --space-8: 64px;  --space-10: 80px; --space-12: 96px;
+  --space-16: 128px; --space-20: 160px;
+  --timeline-offset: 72px; /* horizontal offset for experience timeline */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; text-rendering: optimizeLegibility; }
+body  {
+  background: var(--bg);
+  color: var(--text-hi);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::selection { background: rgba(220,38,38,0.18); color: #f2f2f2; }
+
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(220,38,38,0.35); border-radius: 2px; }
+
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+.container {
+  /* Single reusable container across the app (centered, fixed max-width)
+     Uses Apple-friendly spacing and a 1440px max width for a polished layout. */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1440px;
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2.5rem; /* md:px-10 */
+    padding-right: 2.5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem; /* lg:px-16 */
+    padding-right: 4rem;
+  }
 }
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 5rem; /* xl:px-20 */
+    padding-right: 5rem;
+  }
+}
+
+.section {
+  /* unified 8-point vertical rhythm - increased for premium feel */
+  padding-top: var(--space-16);   /* 128 */
+  padding-bottom: var(--space-16); /* 128 */
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--space-20);   /* 160 */
+    padding-bottom: var(--space-20); /* 160 */
+  }
+}
+
+.section-tight {
+  padding-top: var(--space-8);   /* 64 */
+  padding-bottom: var(--space-8); /* 64 */
+}
+
+.section-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* Retire old caps. Kept for backward-compat but no longer used by new architecture. */
+.section-title-max { max-width: none; }
+.section-subtitle-max { max-width: none; }
+
+/* Grid / layout utilities */
+.grid-2col-50-50 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .grid-2col-50-50 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-2col-60-40 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .grid-2col-60-40 {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8); /* 64 */
+}
+
+@media (min-width: 768px) {
+  .card-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-10); /* 80 */
+  }
+}
+
+@media (min-width: 1280px) {
+  .card-grid-2 {
+    gap: var(--space-12); /* 96 */
+  }
+}
+
+/* Section shell: global container + 12-column CSS Grid for layout
+   - Keeps max-w-screen-2xl and responsive gutters
+   - Children default to full-width (grid-column: 1 / -1)
+   - Components may opt into column spans using Tailwind `col-span-*` utilities */
+.section-shell {
+  @apply container;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-4); /* 32px gutters by default (Apple/8pt-friendly) */
+  align-items: start;
+}
+
+/* Default: make direct children span the full 12 columns so existing components
+   remain full-width unless they specify a col-span via utility classes. */
+.section-shell > * {
+  grid-column: 1 / -1;
+}
+
+/* Consistent section spacing wrapper for content blocks.
+   Prevents any accidental browser-edge touching by forcing horizontal centering
+   and using the same padding/gutters as .section-shell. */
+.section-container {
+  @apply container;
+}
+
+
+/* Don't use @apply here because `section` is not a Tailwind utility class. */
+.section-py {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .section-py {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
+}
+
+
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 40%, var(--border) 60%, transparent);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+.hero-grid-bg {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.hero-glow {
+  background: radial-gradient(ellipse at center, rgba(220,38,38,0.16) 0%, transparent 68%);
+  filter: blur(26px);
+}
+
+.project-visual-grid {
+  background-image: linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.timeline-line {
+  background: linear-gradient(180deg, rgba(220,38,38,0.55), rgba(220,38,38,0.08));
+  left: var(--timeline-offset);
+  width: 1px;
+  position: absolute;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+.text-balance { text-wrap: balance; }
