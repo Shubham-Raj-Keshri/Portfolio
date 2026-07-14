@@ -70,8 +70,15 @@ export const projects = [
   {
     title: "Interview Dashboard",
     description:
-      "Full Stack Interview Tracker with JWT Authentication. Manage your job applications with CRUD operations, advanced filtering, sorting, and a fully responsive UI.",
-    tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "REST APIs"],
+      "Full Stack Interview Tracker with JWT Authentication. Manage job applications with CRUD operations, advanced filtering, sorting, and a fully responsive user interface.",
+    tech: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "REST APIs",
+    ],
     live: null,
     github: null,
     featured: true,
@@ -79,8 +86,14 @@ export const projects = [
   {
     title: "Finance Tracker",
     description:
-      "Personal finance management platform to track income, expenses, and categories. Features JWT authentication, clean dashboard UI, and comprehensive financial reporting.",
-    tech: ["Node.js", "MongoDB", "Tailwind CSS", "JWT", "React"],
+      "Personal finance management platform to track income, expenses, and categories. Features JWT authentication, a clean dashboard interface, and comprehensive financial reporting.",
+    tech: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "JWT",
+    ],
     live: null,
     github: null,
     featured: false,
@@ -89,8 +102,56 @@ export const projects = [
     title: "Edutech Course Directory",
     description:
       "Modern SaaS-inspired course discovery platform built with React and Vite. Features search, filtering, pagination, skeleton loading, and smooth Framer Motion animations.",
-    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+    tech: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
     live: "https://edutech-course-directory.vercel.app/",
+    github: null,
+    featured: false,
+  },
+
+  // ============================================================
+  // PROJECT 5
+  // ============================================================
+
+  {
+    title: "Jewel's Galore",
+    description:
+      "A modern full-stack jewellery e-commerce website with a responsive shopping experience, category-wise product collections, premium visuals, smooth navigation, and a Node.js and Express backend with REST APIs.",
+    tech: [
+      "React 19",
+      "Vite",
+      "Tailwind CSS",
+      "React Router",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+    ],
+    live: "https://shubham-raj-keshri.github.io/Jewel-s-Galore/",
+    github: null,
+    featured: false,
+  },
+
+  // ============================================================
+  // PROJECT 6
+  // ============================================================
+
+  {
+    title: "Responsive Burger Website",
+    description:
+      "A fully responsive fast-food restaurant website featuring a modern hero section, menu cards, smooth animations, and an interactive mobile navigation experience optimized for all screen sizes.",
+    tech: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "AOS",
+      "FontAwesome",
+      "Responsive Design",
+    ],
+    live: "https://shubham-raj-keshri.github.io/Responsive-Burger/",
     github: null,
     featured: false,
   },
