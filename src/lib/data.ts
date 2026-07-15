@@ -72,7 +72,14 @@ export const projects = [
     title: "Interview Dashboard",
     description:
       "Full Stack Interview Tracker with JWT Authentication. Manage job applications with CRUD operations, advanced filtering, sorting, and a fully responsive user interface.",
-    tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "REST APIs"],
+    tech: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "REST APIs",
+    ],
     image: "/assets/InterviewDashboard.png",
     live: null,
     github: null,
@@ -98,11 +105,6 @@ export const projects = [
     github: null,
     featured: false,
   },
-
-  // ============================================================
-  // PROJECT 5
-  // ============================================================
-
   {
     title: "Jewel's Galore",
     description:
@@ -121,11 +123,6 @@ export const projects = [
     github: null,
     featured: false,
   },
-
-  // ============================================================
-  // PROJECT 6
-  // ============================================================
-
   {
     title: "Responsive Burger Website",
     description:
@@ -138,7 +135,7 @@ export const projects = [
       "FontAwesome",
       "Responsive Design",
     ],
-    image: "/assets/Responsive Burger.png",
+    image: "/assets/ResponsiveBurger.png",
     live: "https://shubham-raj-keshri.github.io/Responsive-Burger/",
     github: null,
     featured: false,
