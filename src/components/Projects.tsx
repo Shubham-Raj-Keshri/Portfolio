@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   FiExternalLink,
@@ -106,218 +106,192 @@ export default function Projects() {
                 "
               >
                 {/* =================================================
-                    PROJECT VISUAL
-                ================================================== */}
+    PROJECT IMAGE
+================================================== */}
 
                 <div
                   className="
-                    relative
-                    mb-6
-                    overflow-hidden
-                    border-y
-                    border-[var(--border)]
-                    bg-[var(--surface)]
-                  "
+    relative
+    mb-6
+    aspect-[16/10]
+    overflow-hidden
+    rounded-xl
+    border
+    border-[var(--border)]
+    bg-[var(--surface)]
+  "
                 >
-                  {/* ===============================================
-                      VISUAL AREA
-                  ================================================ */}
-
-                  <div
-                    className="
-                      relative
-                      flex
-                      h-[180px]
-                      items-center
-                      justify-center
-                      overflow-hidden
-                      sm:h-[200px]
-                      lg:h-[220px]
-                    "
-                  >
-                    {/* Subtle Grid */}
-
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        inset-0
-                        opacity-50
-                      "
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)",
-                        backgroundSize: "40px 40px",
-                      }}
-                      aria-hidden="true"
-                    />
-
-                    {/* Red Glow */}
-
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        left-1/2
-                        top-1/2
-                        h-32
-                        w-32
-                        -translate-x-1/2
-                        -translate-y-1/2
-                        rounded-full
-                        bg-[var(--red)]
-                        opacity-[0.04]
-                        blur-[50px]
-                        transition-all
-                        duration-500
-                        group-hover:scale-125
-                        group-hover:opacity-[0.07]
-                      "
-                      aria-hidden="true"
-                    />
-
-                    {/* Large Project Number */}
-
-                    <span
-                      className="
-                        pointer-events-none
-                        absolute
-                        right-3
-                        top-2
-                        select-none
-                        font-mono
-                        text-[4rem]
-                        font-bold
-                        leading-none
-                        tracking-[-0.08em]
-                        text-[var(--text-hi)]
-                        opacity-[0.025]
-                        sm:text-[5rem]
-                      "
-                      aria-hidden="true"
-                    >
-                      {projectNumber}
-                    </span>
-
-                    {/* Center Project Mark */}
-
-                    <div
-                      className="
-                        relative
-                        z-10
-                        flex
-                        flex-col
-                        items-center
-                        justify-center
-                        text-center
-                      "
-                    >
-                      {/* Project Number */}
-
-                      <span
+                  {project.image ? (
+                    <>
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} project preview`}
+                        fill
+                        sizes="
+          (max-width: 767px) 100vw,
+          (max-width: 1279px) 50vw,
+          33vw
+        "
                         className="
-                          font-mono
-                          text-[11px]
-                          font-medium
-                          tracking-[0.14em]
-                          text-[var(--red)]
-                        "
-                      >
-                        PROJECT / {projectNumber}
-                      </span>
+          object-cover
+          object-top
+          transition-transform
+          duration-500
+          ease-out
+          group-hover:scale-[1.03]
+        "
+                      />
 
-                      {/* Decorative Line */}
+                      {/* Subtle hover overlay */}
 
                       <div
                         className="
-                          my-5
-                          h-10
-                          w-px
-                          bg-gradient-to-b
-                          from-[var(--red)]
-                          to-transparent
-                          opacity-60
-                        "
+          pointer-events-none
+          absolute
+          inset-0
+          bg-gradient-to-t
+          from-black/15
+          via-transparent
+          to-transparent
+          opacity-0
+          transition-opacity
+          duration-300
+          group-hover:opacity-100
+        "
+                        aria-hidden="true"
                       />
 
-                      {/* Project Title */}
+                      {/* Project number */}
 
-                      <p
+                      <div
                         className="
-                          max-w-[80%]
-                          text-lg
-                          font-bold
-                          leading-tight
-                          tracking-[-0.03em]
-                          text-[var(--text-hi)]
-                          sm:text-xl
-                        "
+          absolute
+          right-3
+          top-3
+          z-10
+          rounded-md
+          border
+          border-white/20
+          bg-black/60
+          px-2.5
+          py-1
+          font-mono
+          text-[10px]
+          font-medium
+          tracking-[0.12em]
+          text-white
+          backdrop-blur-sm
+        "
                       >
-                        {project.title}
-                      </p>
+                        {projectNumber}
+                      </div>
+                    </>
+                  ) : (
+                    /* Fallback when no project image exists */
+
+                    <div
+                      className="
+        relative
+        flex
+        h-full
+        w-full
+        items-center
+        justify-center
+        overflow-hidden
+      "
+                    >
+                      {/* Grid */}
+
+                      <div
+                        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-50
+        "
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)",
+                          backgroundSize: "40px 40px",
+                        }}
+                        aria-hidden="true"
+                      />
+
+                      {/* Glow */}
+
+                      <div
+                        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          h-32
+          w-32
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-[var(--red)]
+          opacity-[0.04]
+          blur-[50px]
+        "
+                        aria-hidden="true"
+                      />
+
+                      {/* Fallback content */}
+
+                      <div
+                        className="
+          relative
+          z-10
+          flex
+          flex-col
+          items-center
+          justify-center
+          px-6
+          text-center
+        "
+                      >
+                        <span
+                          className="
+            font-mono
+            text-[11px]
+            font-medium
+            tracking-[0.14em]
+            text-[var(--red)]
+          "
+                        >
+                          PROJECT / {projectNumber}
+                        </span>
+
+                        <div
+                          className="
+            my-5
+            h-10
+            w-px
+            bg-gradient-to-b
+            from-[var(--red)]
+            to-transparent
+            opacity-60
+          "
+                        />
+
+                        <p
+                          className="
+            max-w-[80%]
+            text-lg
+            font-bold
+            leading-tight
+            tracking-[-0.03em]
+            text-[var(--text-hi)]
+            sm:text-xl
+          "
+                        >
+                          {project.title}
+                        </p>
+                      </div>
                     </div>
-
-                    {/* Top Left Corner */}
-
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        left-0
-                        top-0
-                        h-6
-                        w-px
-                        bg-[var(--red)]
-                        opacity-60
-                      "
-                    />
-
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        left-0
-                        top-0
-                        h-px
-                        w-6
-                        bg-[var(--red)]
-                        opacity-60
-                      "
-                    />
-
-                    {/* Bottom Right Corner */}
-
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        bottom-0
-                        right-0
-                        h-6
-                        w-px
-                        bg-[var(--red)]
-                        opacity-60
-                      "
-                    />
-
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        bottom-0
-                        right-0
-                        h-px
-                        w-6
-                        bg-[var(--red)]
-                        opacity-60
-                      "
-                    />
-                  </div>
+                  )}
                 </div>
-
-                {/* =================================================
-                    PROJECT CONTENT
-                ================================================== */}
 
                 <div
                   className="
